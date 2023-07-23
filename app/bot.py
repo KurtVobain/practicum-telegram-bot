@@ -12,7 +12,10 @@ bot = telebot.TeleBot(Config.BOT_TOKEN)
 @bot.message_handler(commands=['get_latest_photo'])
 def get_latest_photo(message):
     photo = Image.open(
-        os.path.join(os.getcwd(), 'data\\pictures\\selfie.jpg')
+        os.path.join(
+            os.getcwd(),
+            os.path.join('data', 'pictures', 'selfie.jpg')
+        )
     )
 
     bot.send_message(message.chat.id, 'Одно из последних фото')
@@ -22,7 +25,10 @@ def get_latest_photo(message):
 @bot.message_handler(commands=['get_high_school_photo'])
 def get_high_school_photo(message):
     photo = Image.open(
-        os.path.join(os.getcwd(), 'data\\pictures\\highschool.jpg')
+        os.path.join(
+            os.getcwd(),
+            os.path.join('data', 'pictures', 'highschool.jpg')
+        )
     )
 
     bot.send_message(
@@ -39,7 +45,11 @@ def get_hobby_descr(message):
 
 @bot.message_handler(commands=['repository'])
 def get_repo_link(message):
-    bot.send_message(message.chat.id, 'Ссылка')
+    bot.send_message(message.chat.id, 'Исходный код можно глянуть тут:')
+    bot.send_message(
+        message.chat.id,
+        'https://github.com/KurtVobain/practicum-telegram-bot'
+    )
 
 
 @bot.message_handler(commands=['listen_audio'])
