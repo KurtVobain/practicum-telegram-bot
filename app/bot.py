@@ -14,7 +14,7 @@ def get_latest_photo(message):
     photo = Image.open(
         os.path.join(
             os.getcwd(),
-            os.path.join('data', 'pictures', 'selfie.jpg')
+            'data', 'pictures', 'selfie.jpg'
         )
     )
 
@@ -27,7 +27,7 @@ def get_high_school_photo(message):
     photo = Image.open(
         os.path.join(
             os.getcwd(),
-            os.path.join('data', 'pictures', 'highschool.jpg')
+            'data', 'pictures', 'highschool.jpg'
         )
     )
 
@@ -45,7 +45,7 @@ def get_hobby_descr(message):
     photo = Image.open(
         os.path.join(
             os.getcwd(),
-            os.path.join('data', 'pictures', 'tennis.jpg')
+            'data', 'pictures', 'tennis.jpg'
         )
     )
     bot.send_photo(message.chat.id, photo)
@@ -82,11 +82,40 @@ def get_audio_selection(message):
 @bot.callback_query_handler(func=lambda call: True)
 def callback_audio_choice(call):
     if call.data == '1':
-        bot.send_message(call.message.chat.id, 'Audio 1')
+        voice = open(
+            os.path.join(
+                os.getcwd(),
+                'data', 'audio', 'gpt.aac'
+            ),
+            'rb'
+        )
+        bot.send_voice(call.message.chat.id, voice, caption='Про ChatGPT')
+
     elif call.data == '2':
-        bot.send_message(call.message.chat.id, 'Audio 2')
+        voice = open(
+            os.path.join(
+                os.getcwd(),
+                'data', 'audio', 'sqlnosql.aac'
+            ),
+            'rb'
+        )
+        bot.send_voice(call.message.chat.id, voice, caption='SQL vs NoSQL')
+
     elif call.data == '3':
-        bot.send_message(call.message.chat.id, 'Audio 3')
+        voice = open(
+            os.path.join(
+                os.getcwd(),
+                'data', 'audio', 'love.aac'
+            ),
+            'rb'
+        )
+        bot.send_voice(call.message.chat.id, voice, caption='Первая любовь')
+
+
+@bot.message_handler(commands=['send_message_to_evgenii'])
+def send_message_to_evgenii(message):
+    bot.send_message(325835886, message.text)
+    bot.send_message(message.chat.id, 'Сообщение отправлено :)')
 
 
 if __name__ == '__main__':
