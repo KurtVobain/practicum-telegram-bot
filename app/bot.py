@@ -114,7 +114,7 @@ def callback_audio_choice(call):
 
 @bot.message_handler(commands=['send_message_to_evgenii'])
 def send_message_to_evgenii(message):
-    bot.send_message(325835886, message.text)
+    bot.send_message(Config.MY_CHAT_ID, message.text)
     bot.send_message(message.chat.id, 'Сообщение отправлено :)')
 
 
