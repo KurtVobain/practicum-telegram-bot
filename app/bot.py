@@ -40,7 +40,15 @@ def get_high_school_photo(message):
 
 @bot.message_handler(commands=['hobby'])
 def get_hobby_descr(message):
-    bot.send_message(message.chat.id, 'Текст о теннисе')
+    bot.send_message(message.chat.id, Config.TENNIS)
+
+    photo = Image.open(
+        os.path.join(
+            os.getcwd(),
+            os.path.join('data', 'pictures', 'tennis.jpg')
+        )
+    )
+    bot.send_photo(message.chat.id, photo)
 
 
 @bot.message_handler(commands=['repository'])
