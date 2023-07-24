@@ -6,6 +6,6 @@ COPY . .
 COPY requirements.txt .
 RUN pip install --upgrade pip && pip install --no-cache-dir --upgrade -r ./requirements.txt
 
-RUN chmod +x ./app/bot.py
+RUN ["chmod", "+x", "boot.sh"]
 
-CMD python3 ./app/bot.py;
+ENTRYPOINT ["./boot.sh"]
